@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas</title>
+    <link rel="stylesheet" href="./public/css/style.css" />
+  </head>
+  <body>
+    <main class="container flex column">
+      <canvas id="board"></canvas>
+
+      <section class="buttons flex">
+        <button type="button" class="drawButton" id="drawRect">
+          Desenhar retângulo azul
+        </button>
+
+        <button type="button" class="drawButton" id="drawLine">
+          Desenhar linha vermelha
+        </button>
+
+        <button type="button" class="drawButton" id="drawArc">
+          Desenhar arco
+        </button>
+
+        <button type="button" class="drawButton" id="drawImage">
+          Desenhar imagem
+        </button>
+
+        <button type="button" class="drawButton" id="clearCanvas">
+          Limpar canvas
+        </button>
+      </section>
+    </main>
+
+    <script src="./public/scripts/app.js"></script>
+  </body>
+</html>

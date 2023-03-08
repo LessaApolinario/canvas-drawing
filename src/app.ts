@@ -23,6 +23,10 @@ drawArcButton.addEventListener('click', () => {
   drawGreenArcIfSupports(canvas);
 });
 
+drawImageButton.addEventListener('click', () => {
+  drawImageIfSupports(canvas);
+});
+
 clearCanvasButton.addEventListener('click', () => {
   clearIfSupports(canvas);
 });
@@ -84,6 +88,24 @@ function drawGreenArc(
   context.stroke();
 }
 
+function drawImageIfSupports(canvas: HTMLCanvasElement) {
+  if (supports(canvas)) {
+    const context = canvas.getContext('2d', { alpha: false });
+    drawImageAfterLoad(context);
+  }
+}
+
+function drawImageAfterLoad(context: CanvasRenderingContext2D) {
+  const image = new Image();
+  image.addEventListener('load', () => drawImage(image, context));
+  image.src = '../public/assets/img/image.jpg';
+}
+
+function drawImage(image: HTMLImageElement, context: CanvasRenderingContext2D) {
+  context.beginPath();
+  context.drawImage(image, 100, 20, 100, 100);
+}
+
 function clearIfSupports(canvas: HTMLCanvasElement) {
   if (supports(canvas)) {
     clear(canvas);
@@ -94,10 +116,6 @@ function clear(canvas: HTMLCanvasElement) {
   const context = canvas.getContext('2d', { alpha: false });
   context.fillStyle = '#fff';
   context.fillRect(0, 0, canvas.width, canvas.height);
-}
-
-function setImageSrc(image: HTMLImageElement, src: string) {
-  image.src = src;
 }
 
 function supports(canvas: HTMLCanvasElement) {

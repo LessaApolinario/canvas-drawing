@@ -14,6 +14,9 @@ drawLineButton.addEventListener('click', () => {
 drawArcButton.addEventListener('click', () => {
     drawGreenArcIfSupports(canvas);
 });
+drawImageButton.addEventListener('click', () => {
+    drawImageIfSupports(canvas);
+});
 clearCanvasButton.addEventListener('click', () => {
     clearIfSupports(canvas);
 });
@@ -56,6 +59,21 @@ function drawGreenArc(context, x, y, radius) {
     context.moveTo(170, 100);
     context.stroke();
 }
+function drawImageIfSupports(canvas) {
+    if (supports(canvas)) {
+        const context = canvas.getContext('2d', { alpha: false });
+        drawImageAfterLoad(context);
+    }
+}
+function drawImageAfterLoad(context) {
+    const image = new Image();
+    image.addEventListener('load', () => drawImage(image, context));
+    image.src = '../public/assets/img/image.jpg';
+}
+function drawImage(image, context) {
+    context.beginPath();
+    context.drawImage(image, 100, 20, 100, 100);
+}
 function clearIfSupports(canvas) {
     if (supports(canvas)) {
         clear(canvas);
@@ -65,9 +83,6 @@ function clear(canvas) {
     const context = canvas.getContext('2d', { alpha: false });
     context.fillStyle = '#fff';
     context.fillRect(0, 0, canvas.width, canvas.height);
-}
-function setImageSrc(image, src) {
-    image.src = src;
 }
 function supports(canvas) {
     return !!canvas.getContext;

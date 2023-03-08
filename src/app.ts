@@ -19,6 +19,10 @@ drawLineButton.addEventListener('click', () => {
   drawRedLineIfSupports(canvas);
 });
 
+drawArcButton.addEventListener('click', () => {
+  drawGreenArcIfSupports(canvas);
+});
+
 clearCanvasButton.addEventListener('click', () => {
   clearIfSupports(canvas);
 });
@@ -38,6 +42,13 @@ function drawRedLineIfSupports(canvas: HTMLCanvasElement) {
   if (supports(canvas)) {
     const context = canvas.getContext('2d', { alpha: false });
     drawRedLine(context, 50, 300);
+  }
+}
+
+function drawGreenArcIfSupports(canvas: HTMLCanvasElement) {
+  if (supports(canvas)) {
+    const context = canvas.getContext('2d', { alpha: false });
+    drawGreenArc(context, 200, 100, 30);
   }
 }
 
@@ -69,6 +80,19 @@ function drawRedLine(context: CanvasRenderingContext2D, x: number, y: number) {
   context.beginPath();
   context.moveTo(0, 0);
   context.lineTo(x, y);
+  context.stroke();
+}
+
+function drawGreenArc(
+  context: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  radius: number
+) {
+  context.strokeStyle = '#199E30';
+  context.beginPath();
+  context.arc(x, y, radius, 0, Math.PI * 2);
+  context.moveTo(170, 100);
   context.stroke();
 }
 

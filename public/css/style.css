@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+:root {
+  --body: #0f0e17;
+  --canvas-bg: #fff;
+  --board-border: #000;
+  --button-bg: #ff8906;
+  --button-text: #fffffe;
+}
+
+.container {
+  gap: 0.8rem;
+  background-color: var(--body);
+}
+
+.container > #board {
+  width: 60%;
+  height: 60%;
+
+  border: 1px solid var(--board-border);
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.buttons {
+  gap: 0.8rem;
+}
+
+.buttons .drawButton {
+  border: 0;
+
+  font-size: 1.05rem;
+  text-align: center;
+
+  color: var(--button-text);
+  background-color: var(--button-bg);
+
+  padding: 1rem;
+  border-radius: 0.4rem;
+  width: 10rem;
+}
+
+.buttons .drawButton:focus {
+  outline: 3px solid var(--button-text);
+}
+
+.buttons #clearCanvas {
+  color: var(--button-bg);
+  background-color: var(--button-text);
+}
+
+.buttons #clearCanvas:focus {
+  outline: 3px solid var(--button-bg);
+}

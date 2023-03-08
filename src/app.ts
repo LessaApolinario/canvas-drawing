@@ -38,32 +38,6 @@ function fillBlueRectIfSupports(canvas: HTMLCanvasElement) {
   }
 }
 
-function drawRedLineIfSupports(canvas: HTMLCanvasElement) {
-  if (supports(canvas)) {
-    const context = canvas.getContext('2d', { alpha: false });
-    drawRedLine(context, 50, 300);
-  }
-}
-
-function drawGreenArcIfSupports(canvas: HTMLCanvasElement) {
-  if (supports(canvas)) {
-    const context = canvas.getContext('2d', { alpha: false });
-    drawGreenArc(context, 200, 100, 30);
-  }
-}
-
-function clearIfSupports(canvas: HTMLCanvasElement) {
-  if (supports(canvas)) {
-    clear(canvas);
-  }
-}
-
-function clear(canvas: HTMLCanvasElement) {
-  const context = canvas.getContext('2d', { alpha: false });
-  context.fillStyle = '#fff';
-  context.fillRect(0, 0, canvas.width, canvas.height);
-}
-
 function fillBlueRect(
   context: CanvasRenderingContext2D,
   x: number,
@@ -75,12 +49,26 @@ function fillBlueRect(
   context.fillRect(x, y, width, height);
 }
 
+function drawRedLineIfSupports(canvas: HTMLCanvasElement) {
+  if (supports(canvas)) {
+    const context = canvas.getContext('2d', { alpha: false });
+    drawRedLine(context, 50, 300);
+  }
+}
+
 function drawRedLine(context: CanvasRenderingContext2D, x: number, y: number) {
   context.strokeStyle = 'rgb(201, 31, 14)';
   context.beginPath();
   context.moveTo(0, 0);
   context.lineTo(x, y);
   context.stroke();
+}
+
+function drawGreenArcIfSupports(canvas: HTMLCanvasElement) {
+  if (supports(canvas)) {
+    const context = canvas.getContext('2d', { alpha: false });
+    drawGreenArc(context, 200, 100, 30);
+  }
 }
 
 function drawGreenArc(
@@ -94,6 +82,18 @@ function drawGreenArc(
   context.arc(x, y, radius, 0, Math.PI * 2);
   context.moveTo(170, 100);
   context.stroke();
+}
+
+function clearIfSupports(canvas: HTMLCanvasElement) {
+  if (supports(canvas)) {
+    clear(canvas);
+  }
+}
+
+function clear(canvas: HTMLCanvasElement) {
+  const context = canvas.getContext('2d', { alpha: false });
+  context.fillStyle = '#fff';
+  context.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 function setImageSrc(image: HTMLImageElement, src: string) {

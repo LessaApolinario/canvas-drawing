@@ -9,9 +9,7 @@ const clearCanvasButton = document.getElementById(
   'clearCanvas'
 ) as HTMLButtonElement;
 
-interface DrawableFunction {
-  draw(): void;
-}
+type DrawableFunction = () => void;
 
 document.addEventListener('DOMContentLoaded', main, false);
 
@@ -40,11 +38,9 @@ function main() {
 }
 
 function tryToDrawBluRect(canvas: HTMLCanvasElement) {
-  drawIfSupports(canvas, {
-    draw: () => {
-      const context = canvas.getContext('2d', { alpha: false });
-      fillBlueRect(context, 200, 100, 40, 40);
-    },
+  drawIfSupports(canvas, () => {
+    const context = canvas.getContext('2d', { alpha: false });
+    fillBlueRect(context, 200, 100, 40, 40);
   });
 }
 
@@ -60,11 +56,9 @@ function fillBlueRect(
 }
 
 function tryToDrawRedLine(canvas: HTMLCanvasElement) {
-  drawIfSupports(canvas, {
-    draw: () => {
-      const context = canvas.getContext('2d', { alpha: false });
-      drawRedLine(context, 50, 300);
-    },
+  drawIfSupports(canvas, () => {
+    const context = canvas.getContext('2d', { alpha: false });
+    drawRedLine(context, 50, 300);
   });
 }
 
@@ -77,11 +71,9 @@ function drawRedLine(context: CanvasRenderingContext2D, x: number, y: number) {
 }
 
 function tryToDrawGreenArc(canvas: HTMLCanvasElement) {
-  drawIfSupports(canvas, {
-    draw: () => {
-      const context = canvas.getContext('2d', { alpha: false });
-      drawGreenArc(context, 200, 100, 30);
-    },
+  drawIfSupports(canvas, () => {
+    const context = canvas.getContext('2d', { alpha: false });
+    drawGreenArc(context, 200, 100, 30);
   });
 }
 
@@ -99,11 +91,9 @@ function drawGreenArc(
 }
 
 function tryToDrawImage(canvas: HTMLCanvasElement) {
-  drawIfSupports(canvas, {
-    draw: () => {
-      const context = canvas.getContext('2d', { alpha: false });
-      drawImageAfterLoad(context);
-    },
+  drawIfSupports(canvas, () => {
+    const context = canvas.getContext('2d', { alpha: false });
+    drawImageAfterLoad(context);
   });
 }
 
@@ -119,11 +109,7 @@ function drawImage(image: HTMLImageElement, context: CanvasRenderingContext2D) {
 }
 
 function tryToClear(canvas: HTMLCanvasElement) {
-  drawIfSupports(canvas, {
-    draw: () => {
-      clear(canvas);
-    },
-  });
+  drawIfSupports(canvas, () => clear(canvas));
 }
 
 function clear(canvas: HTMLCanvasElement) {
@@ -132,7 +118,7 @@ function clear(canvas: HTMLCanvasElement) {
   context.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-function drawIfSupports(canvas: HTMLCanvasElement, { draw }: DrawableFunction) {
+function drawIfSupports(canvas: HTMLCanvasElement, draw: DrawableFunction) {
   if (supports(canvas)) {
     draw();
   }

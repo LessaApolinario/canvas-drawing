@@ -25,8 +25,7 @@ function main() {
 }
 function tryToDrawBluRect(canvas) {
     drawIfSupports(canvas, () => {
-        const context = canvas.getContext('2d', { alpha: false });
-        fillBlueRect(context, 200, 100, 40, 40);
+        fillBlueRect(getContext(canvas), 200, 100, 40, 40);
     });
 }
 function fillBlueRect(context, x, y, width, height) {
@@ -35,8 +34,7 @@ function fillBlueRect(context, x, y, width, height) {
 }
 function tryToDrawRedLine(canvas) {
     drawIfSupports(canvas, () => {
-        const context = canvas.getContext('2d', { alpha: false });
-        drawRedLine(context, 50, 300);
+        drawRedLine(getContext(canvas), 50, 300);
     });
 }
 function drawRedLine(context, x, y) {
@@ -48,8 +46,7 @@ function drawRedLine(context, x, y) {
 }
 function tryToDrawGreenArc(canvas) {
     drawIfSupports(canvas, () => {
-        const context = canvas.getContext('2d', { alpha: false });
-        drawGreenArc(context, 200, 100, 30);
+        drawGreenArc(getContext(canvas), 200, 100, 30);
     });
 }
 function drawGreenArc(context, x, y, radius) {
@@ -61,8 +58,7 @@ function drawGreenArc(context, x, y, radius) {
 }
 function tryToDrawImage(canvas) {
     drawIfSupports(canvas, () => {
-        const context = canvas.getContext('2d', { alpha: false });
-        drawImageAfterLoad(context);
+        drawImageAfterLoad(getContext(canvas));
     });
 }
 function drawImageAfterLoad(context) {
@@ -86,6 +82,9 @@ function drawIfSupports(canvas, draw) {
     if (supports(canvas)) {
         draw();
     }
+}
+function getContext(canvas) {
+    return canvas.getContext('2d', { alpha: false });
 }
 function supports(canvas) {
     return !!canvas.getContext;
